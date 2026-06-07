@@ -86,7 +86,7 @@ export default function Home() {
               </a>
             ))}
             <a
-              href="https://drive.google.com/uc?export=download&id=15RcHWL0u-N3HNGDpckbGS55HvLPOk9Ob"
+              href="https://drive.google.com/uc?export=download&id=1_1N0GchPe1oANTVxYEiM31L7baZ4WNRx"
               className="px-4 py-2 bg-[#22d3ee] text-[#020617] rounded-lg font-semibold hover:bg-[#06b6d4] transition-colors duration-200 text-sm"
             >
               Download Resume
@@ -132,7 +132,7 @@ export default function Home() {
                 </a>
               ))}
               <a
-                href="https://drive.google.com/uc?export=download&id=15RcHWL0u-N3HNGDpckbGS55HvLPOk9Ob"
+                href="https://drive.google.com/uc?export=download&id=1_1N0GchPe1oANTVxYEiM31L7baZ4WNRx"
                 onClick={() => setIsMenuOpen(false)}
                 className="px-4 py-2 bg-[#22d3ee] text-[#020617] rounded-lg font-semibold hover:bg-[#06b6d4] transition-colors duration-200 text-center"
               >
