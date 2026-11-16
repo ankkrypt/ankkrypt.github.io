@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import ProjectCard from "@/app/components/ProjectCard";
 
@@ -41,44 +41,28 @@ export default function ProjectsPage() {
   };
 
   // Add your projects here
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Project One",
-      description: "Problem-focused app with clean architecture and real use-case value.",
-      images: [
-        "https://via.placeholder.com/600x400?text=Project+One+Image+1",
-        "https://via.placeholder.com/600x400?text=Project+One+Image+2",
-        "https://via.placeholder.com/600x400?text=Project+One+Image+3",
-      ],
-      tech: ["React", "Node.js", "MongoDB"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/ankkrypt/project-one",
-    },
-    {
-      id: 2,
-      title: "Project Two",
-      description: "Performance-oriented backend/service with robust API design.",
-      images: [
-        "https://via.placeholder.com/600x400?text=Project+Two+Image+1",
-        "https://via.placeholder.com/600x400?text=Project+Two+Image+2",
-      ],
-      tech: ["TypeScript", "Express", "PostgreSQL"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/ankkrypt/project-two",
-    },
-    {
-      id: 3,
-      title: "Project Three",
-      description: "Automation/tooling project to improve development productivity.",
-      images: [
-        "https://via.placeholder.com/600x400?text=Project+Three+Image+1",
-      ],
-      tech: ["Python", "Bash", "GitHub Actions"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/ankkrypt/project-three",
-    },
-  ];
+  const projects = useMemo<Project[]>(
+    () => [
+      {
+        id: 1,
+        title: "Ankkrypt Stremio All-In-One Addon",
+        description: "Easy to use aggregator for Movies, Series, TV, YouTube.",
+        images: [
+          "/projects/AnkkryptStremioAddon/StremioAddonHomePage.avif",
+          "/projects/AnkkryptStremioAddon/StremioAddonInstallation.avif",
+          "/projects/AnkkryptStremioAddon/StremioAddonMovieStream.avif",
+          "/projects/AnkkryptStremioAddon/StremioAddonSeriesStream.avif",
+          "/projects/AnkkryptStremioAddon/StremioAddonIPTVCatalogPreview.avif",
+          "/projects/AnkkryptStremioAddon/StremioAddonSearchResult.avif",
+          "/projects/AnkkryptStremioAddon/StremioAddonIPTVCatalog.avif",
+        ],
+        tech: ["React", "Node.js", "MongoDB"],
+        liveUrl: "https://stremio-addon.ankkrypt.me",
+        githubUrl: "https://github.com/ankkrypt/StremioAddon_Ankkrypt",
+      },
+    ],
+    [],
+  );
 
   // Auto-rotate images
   useEffect(() => {
@@ -86,7 +70,7 @@ export default function ProjectsPage() {
       return setInterval(() => {
         setCurrentImageIndex((prev) => ({
           ...prev,
-          [project.id]: ((prev[project.id] || 0) + 1) % project.images.length,
+          [project.id]: ((prev[project.id] ?? 0) + 1) % project.images.length,
         }));
       }, 5000); // Change image every 5 seconds
     });
@@ -94,19 +78,20 @@ export default function ProjectsPage() {
     return () => {
       intervals.forEach((interval) => clearInterval(interval));
     };
-  }, [projects.length]);
+  }, [projects]);
 
   const goToPreviousImage = (projectId: number, totalImages: number) => {
     setCurrentImageIndex((prev) => ({
       ...prev,
-      [projectId]: prev[projectId] === 0 ? totalImages - 1 : prev[projectId] - 1,
+      [projectId]:
+        ((prev[projectId] ?? 0) - 1 + totalImages) % totalImages,
     }));
   };
 
   const goToNextImage = (projectId: number, totalImages: number) => {
     setCurrentImageIndex((prev) => ({
       ...prev,
-      [projectId]: (prev[projectId] + 1) % totalImages,
+      [projectId]: ((prev[projectId] ?? 0) + 1) % totalImages,
     }));
   };
 

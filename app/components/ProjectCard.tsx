@@ -163,14 +163,16 @@ export default function ProjectCard({
             >
               Live URL
             </a>
-            <a
+              
+            {/*uncomment below if you want a button for github repo link */}
+            {/*<a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 px-4 md:px-6 py-2.5 md:py-3.5 border-2 border-[#22d3ee] text-[#22d3ee] font-semibold rounded-lg hover:bg-[#22d3ee] hover:text-[#020617] hover:shadow-lg hover:shadow-[#22d3ee]/30 transition-all duration-200 text-center text-sm md:text-base"
             >
               Open in GitHub
-            </a>
+            </a>*/}
           </div>
         </div>
       </div>
